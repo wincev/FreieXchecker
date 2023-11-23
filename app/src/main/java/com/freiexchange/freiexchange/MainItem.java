@@ -32,8 +32,10 @@ public class MainItem {
 
         for (int i = 0; i < keyStringList.size(); i++) {
             String stringListItem = keyStringList.get(i);
-            MainItem newMain = new MainItem(stringListItem, jsonObject.getJSONArray(stringListItem).getJSONObject(0).getString("last"));
-            mainItemsArray.add(newMain);
+            if (jsonObject.getJSONArray(stringListItem).length() > 0 && jsonObject.getJSONArray(stringListItem).getJSONObject(0).has("last")) {
+                MainItem newMain = new MainItem(stringListItem, jsonObject.getJSONArray(stringListItem).getJSONObject(0).getString("last"));
+                mainItemsArray.add(newMain);
+            }
         }
 
         return mainItemsArray;
